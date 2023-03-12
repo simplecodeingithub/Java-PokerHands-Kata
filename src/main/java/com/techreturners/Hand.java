@@ -10,6 +10,7 @@ public class Hand implements Comparable<Hand> {
     private final List<Card> cards;
     private RankType rankType;
     private Rank highestRank;
+    private List<Card> winningCards;
 
     public Hand(List<Card> cards) {
         this.cards = cards;
@@ -18,6 +19,7 @@ public class Hand implements Comparable<Hand> {
     }
 
     public void calculateRank() {
+        Collections.sort(cards);
         if (isRoyalFlush()) {
             rankType = RankType.ROYAL_FLUSH;
             highestRank = Rank.ACE;
@@ -55,7 +57,10 @@ public class Hand implements Comparable<Hand> {
     }
 
     private boolean isRoyalFlush() {
-        return isStraightFlush() && cards.get(0).getRank() == Rank.ACE;
+        if (!isStraightFlush()) {
+            return false;
+        }
+        return cards.get(0).getRank() == Rank.ACE;
     }
 
     private boolean isStraightFlush() {
@@ -192,92 +197,9 @@ public class Hand implements Comparable<Hand> {
         return cardNames;
     }
 
-    public List<Card> getWinningCards() {
-        switch (winningCombination) {
-            case "royal flush":
-            case "straight flush":
-            case "flush":
-            case "straight":
-            case "high card":
-                // return just the highest card
-                return Collections.singletonList(Collections.max(cards));
-            case "four of a kind":
-                // find the four-of-a-kind cards and return them, along with the remaining highest card
-                List<Card> fourOfAKindCards = new ArrayList<>();
-                List<Card> remainingCards = new ArrayList<>(cards);
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 4) {
-                        fourOfAKindCards.add(card);
-                        remainingCards.removeAll(Collections.singleton(card));
-                        break;
-                    }
-                }
-                fourOfAKindCards.add(Collections.max(remainingCards));
-                return fourOfAKindCards;
-            case "full house":
-                // find the three-of-a-kind and pair cards and return them
-                List<Card> fullHouseCards = new ArrayList<>();
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 3) {
-                        fullHouseCards.add(card);
-                    }
-                }
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 2) {
-                        fullHouseCards.add(card);
-                    }
-                }
-                return fullHouseCards;
-            case "three of a kind":
-                // find the three-of-a-kind cards and return them, along with the remaining two highest cards
-                List<Card> threeOfAKindCards = new ArrayList<>();
-                List<Card> remainingCards3 = new ArrayList<>(cards);
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 3) {
-                        threeOfAKindCards.add(card);
-                        remainingCards3.removeAll(Collections.singleton(card));
-                        break;
-                    }
-                }
-                remainingCards3.sort(Collections.reverseOrder());
-                threeOfAKindCards.add(remainingCards3.get(0));
-                threeOfAKindCards.add(remainingCards3.get(1));
-                return threeOfAKindCards;
-            case "two pair":
-                // find the two pairs and return them, along with the remaining highest card
-                List<Card> twoPairCards = new ArrayList<>();
-                List<Card> remainingCards2 = new ArrayList<>(cards);
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 2) {
-                        twoPairCards.add(card);
-                        remainingCards2.removeAll(Collections.singleton(card));
-                        break;
-                    }
-                }
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 2) {
-                        twoPairCards.add(card);
-                        remainingCards2.removeAll(Collections.singleton(card));
-                        break;
-                    }
-                }
-                twoPairCards.add(Collections.max(remainingCards2));
-                return twoPairCards;
-            case "pair":
-                // find the pair cards and return them, along with the remaining three highest cards
-                List<Card> pairCards = new ArrayList<>();
-                List<Card> remainingCards1 = new ArrayList<>(cards);
-                for (Card card : cards) {
-                    if (Collections.frequency(cards, card) == 2) {
-                        pairCards.add(card);
-                        remainingCards1.removeAll(Collections.singleton(card));
-                        break;
-                    }
-                }
-                remainingCards1.sort(Collections.reverseOrder());
-                pairCards.add(remainingCards1);
-        }
+    private List<Card> getWinningCards() {
+        return cards;
     }
-    }
-}
 
+
+}
