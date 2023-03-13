@@ -1,5 +1,13 @@
 blackCardsString,whiteCardsString,expectedOutput
-2H 3D 5S 9C KD,2C 3H 4S 8C AH,White wins. - with high card: Ace
-2H 4S 4C 2D 4H,2S 8S AS QS 3S,Black wins. - with full house: 4 over 2
-2H 3D 5S 9C KD,2C 3H 4S 8C KH,Black wins. - with high card: 9
-2H 3D 5S 9C KD,2D 3H 5C 9S KH,Tie
+"2H 4S 4C 2D 4H","2S 8S AS QS 3S","Black wins. - with full house: 4 over 2"
+"2H 3D 5S 9C KD","2C 3H 4S 8C KH","Black wins. - with high card"
+"2H 3D 5S 9C KD","2D 3H 5C 9S KH","Tie"
+"2S 2D 2C 4S 4D","4C 4H 5S 5H 5C","White wins. - with full house: 5 over 4"
+"2D 3H 4C 5S 6D","2H 3C 4S 5D 6C","Tie"
+"1H 2H 3H 4H 5H","6H 7H 8H 9H 10H","Black wins. - with straight flush: 5"
+"AS KS QS JS TS","AC KC QC JC TC","Invalid Rank symbol: T"
+"AS KS QS JS ZS","AC KC QC JC AC","Invalid suit symbol: Z"
+"5C 5S 5D 5H AH","6H 6S 7S 6D 6C","Black wins. - with four of a kind: Queen"
+"AH 2D 3S 4C 5H","2C 3H 4S 5C 6H","White wins. - with Straight"
+"AH AD 4S 4C 4H","KH KD QS QC QH","Black wins. - with Full House: Ace"
+
