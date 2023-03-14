@@ -9,7 +9,7 @@ package com.techreturners;
     SEVEN("7"),
     EIGHT("8"),
     NINE("9"),
-    TEN("10"),
+    TEN("T"),
     JACK("J"),//jack is 11
     QUEEN("Q"),//12
     KING("K"),//13
