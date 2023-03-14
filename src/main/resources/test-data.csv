@@ -13,4 +13,6 @@ blackCardsString,whiteCardsString,expectedOutput
 "2H 2D 5S 5C KD","2C 2S 4S 4C KH","Black wins. - with two pair"
 "2H 2D 5S 9C KD","2C 3H 4S 8C KH","Black wins. - with one pair"
 "JH JS 8C 8D 4H","TS JC AH JH TC","Black wins. - with two pairs: Ace and King"
+"AH 7S 7C 2D 7H","TS 3C TH JH TC","White wins. - with three of a kind: 10"
+
 
